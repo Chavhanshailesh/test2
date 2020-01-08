@@ -41,10 +41,6 @@ pipeline{
 		success {
             junit 'build/reports/**/*.xml'
         }
-			always {
-				archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-				junit 'build/reports/**/*.xml'
-			}
 	}
   
 }

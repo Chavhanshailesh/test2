@@ -39,7 +39,7 @@ pipeline{
 			sh "docker rmi ${REPO_NAME}/${IMAGE_NAME}:${VERSION} | true"
 		}
 		success {
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            archiveArtifacts artifacts: 'build/libs/**/*', fingerprint: true
         }
 	}
   

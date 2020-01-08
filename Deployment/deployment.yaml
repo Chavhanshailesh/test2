@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: frontend
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: deepakjotwani/simplr-frontend:latest
+          image: deepakjotwani/simplr-frontend:tagVersion
           ports:
             - name: frontend
               containerPort: 5000

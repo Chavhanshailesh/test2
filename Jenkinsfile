@@ -22,6 +22,9 @@ pipeline{
             }
 
         }
+		timeout(time: 1, unit: "MINUTES") {
+			input message: 'Do you want to approve the push in ecr repo', ok: 'Yes'
+		}
 		stage('ECR Push'){
 			steps{
 				withCredentials([string(credentialsId: 'dkr-hub', variable: 'DockerHubPass')]) {

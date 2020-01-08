@@ -38,6 +38,11 @@ pipeline{
 			// make sure that the Docker image is removed
 			sh "docker rmi ${REPO_NAME}/${IMAGE_NAME}:${VERSION} | true"
 		}
+		success {
+			mail to: 'shaileshchavhan1@gmail.com',
+				 subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
+				 body: "build is done ${env.BUILD_URL}"
+		}
 	}
   
 }

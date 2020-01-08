@@ -39,7 +39,7 @@ pipeline{
 			sh "docker rmi ${REPO_NAME}/${IMAGE_NAME}:${VERSION} | true"
 		}
 		success {
-            junit 'build/reports/**/*.xml'
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
         }
 	}
   

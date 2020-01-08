@@ -38,9 +38,6 @@ pipeline{
 			// make sure that the Docker image is removed
 			sh "docker rmi ${REPO_NAME}/${IMAGE_NAME}:${VERSION} | true"
 		}
-		success {
-            archiveArtifacts artifacts: 'build/libs/**/*', fingerprint: true
-        }
 	}
   
 }

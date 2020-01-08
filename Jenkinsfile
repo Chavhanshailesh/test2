@@ -38,13 +38,13 @@ pipeline{
 			// make sure that the Docker image is removed
 			sh "docker rmi ${REPO_NAME}/${IMAGE_NAME}:${VERSION} | true"
 		}
-		always {
+		success {
             junit 'build/reports/**/*.xml'
         }
-		always {
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
-        }
+			always {
+				archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+				junit 'build/reports/**/*.xml'
+			}
 	}
   
 }

@@ -1,2 +1,2 @@
 #!/bin/sh
-./node_modules/.bin/mocha ./test/test.js
+nyc ./node_modules/.bin/mocha -- -R tap ./test/test.js > test.tap && nyc report clover

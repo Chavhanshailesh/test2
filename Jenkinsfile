@@ -39,12 +39,24 @@ pipeline{
 								sh 'docker push ${REPO_NAME}/${IMAGE_NAME}:${VERSION}'
 							}		
 				}
+				stage('Download') {
+					steps {
+						sh 'mkdir js'
+						sh 'echo "not a artifact file" > js/build.js'
+						sh 'echo "artifact file" > js/build.min.js'
+						
+						sh 'mkdir css'
+						sh 'echo "not a artifact file" > css/build.css'
+						sh 'echo "artifact file" > css/build.min.css'
+					}
+				}	
+				
 			}
 			post{
 						always{
 							// make sure that the Docker image is removed
 							sh "docker rmi ${REPO_NAME}/${IMAGE_NAME}:${VERSION} | true"
-							archiveArtifacts artifacts: 'build/*.js'
+							archiveArtifacts artifacts: '**/*.min.*', onlyIfSuccessful: true
 						}
 						
 				}

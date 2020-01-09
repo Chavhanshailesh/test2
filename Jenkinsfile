@@ -24,7 +24,7 @@ pipeline{
 				}
 				stage('promotion'){
 					steps{
-						//timeout(time: 1, unit: "MINUTES") {
+						timeout(time: 1, unit: "MINUTES") {
 						//	input message: 'Do you want to approve the push in ecr repo', ok: 'Yes'
 						verify()
 						echo 'push to ecr'

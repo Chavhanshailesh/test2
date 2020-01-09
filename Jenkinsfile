@@ -24,15 +24,11 @@ pipeline{
 				}
 				stage('promotion'){
 					steps{
-						def userInput = input(
-							id: 'userInput', message: 'Do you want to PUSH!', parameters: [
-							[$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Please confirm you sure to proceed']
-							])
-
-							if(!userInput) {
-							error "Build wasn't confirmed"
-							}
-					}
+						//timeout(time: 1, unit: "MINUTES") {
+						//	input message: 'Do you want to approve the push in ecr repo', ok: 'Yes'
+						verify()
+						echo 'push to ecr'
+						}
 				}
 				stage('ECR Push'){
 							steps{
@@ -50,6 +46,18 @@ pipeline{
 						}
 				}
 	
+	}
+	def verify() {
+		stage('Verify') {
+			def userInput = input(
+				id: 'userInput', message: 'PUSH to ECR', parameters: [
+				[$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Please confirm you sure to proceed']
+			])
+
+			if(!userInput) {
+				error "Build wasn't confirmed"
+			}
+		}
 	}
 
   

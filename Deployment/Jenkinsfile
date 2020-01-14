@@ -1,8 +1,6 @@
 pipeline{
 			agent any
-				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',
-					name: 'BuildVersion', trim: false)
-				])])
+				
 			environment{
 						VERSION = "${params.BuildVersion}"
 						REPO_NAME = 'shaileshrc'
@@ -12,6 +10,8 @@ pipeline{
 				
 			}
 			stages{
+				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',
+					name: 'BuildVersion', trim: false)])])
 				
 				stage('Docker Build'){
 					steps{
@@ -31,8 +31,9 @@ pipeline{
 						}
 				}
 				stage('ECR Push'){
-							dir('Deployment'){
+							
 								steps{
+								dir('Deployment'){
 									withCredentials([string(credentialsId: 'dkr-hub', variable: 'DockerHubPass')]) {
 										sh "docker login -u shaileshrc  -p ${DockerHubPass}"   
 									}

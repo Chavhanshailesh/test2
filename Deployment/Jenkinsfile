@@ -1,9 +1,6 @@
 pipeline{
 			agent any
-			parameter{
-
-			}
-				
+					
 			environment{
 						VERSION = "${params.BuildVersion}"
 						REPO_NAME = 'shaileshrc'
@@ -13,9 +10,10 @@ pipeline{
 				
 			}
 			stages{		
-				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',name: 'BuildVersion', trim: false)])])
 
 				stage('Docker Build'){
+								properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',name: 'BuildVersion', trim: false)])])
+
 					steps{
 						dir('Deployment') {
 							sh "docker build . -t ${REPO_NAME}/${IMAGE_NAME}:${VERSION}"

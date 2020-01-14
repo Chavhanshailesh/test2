@@ -33,13 +33,13 @@ pipeline{
 				stage('ECR Push'){
 							
 								steps{
-								dir('Deployment'){
-									withCredentials([string(credentialsId: 'dkr-hub', variable: 'DockerHubPass')]) {
-										sh "docker login -u shaileshrc  -p ${DockerHubPass}"   
-									}
-									sh 'docker push ${REPO_NAME}/${IMAGE_NAME}:${VERSION}'
+									dir('Deployment'){
+										withCredentials([string(credentialsId: 'dkr-hub', variable: 'DockerHubPass')]) {
+											sh "docker login -u shaileshrc  -p ${DockerHubPass}"   
+										}
+										sh 'docker push ${REPO_NAME}/${IMAGE_NAME}:${VERSION}'
+									}	
 								}
-							}
 										
 				}
 				stage('Download') {

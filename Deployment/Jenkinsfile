@@ -1,5 +1,9 @@
 pipeline{
 			agent any
+			parameter{
+				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',
+					name: 'BuildVersion', trim: false)])])
+			}
 				
 			environment{
 						VERSION = "${params.BuildVersion}"
@@ -8,11 +12,6 @@ pipeline{
 						ECR_URL = '387637752303.dkr.ecr.us-east-1.amazonaws.com'
 						GIT_URL = 'https://github.com/Chavhanshailesh/test1.git'
 				
-			}
-			parameters{
-				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',
-					name: 'BuildVersion', trim: false)])])
-			
 			}
 			stages{
 				

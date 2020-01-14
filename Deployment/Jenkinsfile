@@ -1,8 +1,7 @@
 pipeline{
 			agent any
 			parameter{
-				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',
-					name: 'BuildVersion', trim: false)])])
+
 			}
 				
 			environment{
@@ -13,9 +12,9 @@ pipeline{
 						GIT_URL = 'https://github.com/Chavhanshailesh/test1.git'
 				
 			}
-			stages{
-				
-				
+			stages{		
+				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',name: 'BuildVersion', trim: false)])])
+
 				stage('Docker Build'){
 					steps{
 						dir('Deployment') {

@@ -9,9 +9,13 @@ pipeline{
 						GIT_URL = 'https://github.com/Chavhanshailesh/test1.git'
 				
 			}
-			stages{
+			parameters{
 				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',
 					name: 'BuildVersion', trim: false)])])
+			
+			}
+			stages{
+				
 				
 				stage('Docker Build'){
 					steps{

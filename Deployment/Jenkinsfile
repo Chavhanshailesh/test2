@@ -1,7 +1,10 @@
 pipeline{
 			agent any
+				properties([parameters([string(defaultValue: '01',description: 'Enter the build version you want to Deploy',
+					name: 'BuildVersion', trim: false)
+				])])
 			environment{
-						VERSION = "${BUILD_ID}"
+						VERSION = "${params.BuildVersion}"
 						REPO_NAME = 'shaileshrc'
 						IMAGE_NAME = 'frontend'
 						ECR_URL = '387637752303.dkr.ecr.us-east-1.amazonaws.com'

@@ -25,6 +25,10 @@ pipeline{
 					steps{
 							timeout(time: 1, unit: "MINUTES") {
 								//	input message: 'Do you want to approve the push in ecr repo', ok: 'Yes'
+								emailext mimeType: 'text/html',
+									 subject: "[Jenkins]${currentBuild.fullDisplayName}",
+									 to: "shaileshchavhan1@gmail.com",
+									 body: '''<a href="${BUILD_URL}input">click to approve</a>'''
 								verify()
 								echo 'push to ecr'
 							}

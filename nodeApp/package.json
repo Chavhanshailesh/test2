@@ -9,11 +9,13 @@
  "scripts":{
 	"test": "mocha ./test/test.js",
 	"coverage": "nyc --reporter=clover --check-coverage --lines 80 npm test"
+	"lint": "eslint **/*.js -c config.eslintrc -f checkstyle"
  },
  "devDependencies": {
     "mocha": "1.20.1",
     "supertest": "0.13.0",
-	"nyc": "15.0.0"
+	"nyc": "15.0.0",
+	"eslint": "*" 
 	
  }
 }
